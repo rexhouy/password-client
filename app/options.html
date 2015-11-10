@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" ng-app="pwdApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Password Manager</title>
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css styles/main.css -->
+    <link href="styles/main.css" rel="stylesheet">
+    <!-- endbuild -->
+  </head>
+  <body ng-cloak id="popupContainer" ng-controller="OptionsController">
+
+    <md-toolbar class="md-main">
+      <div class="md-toolbar-tools container">
+        <h2 class="md-flex"><i class="material-icons" style="position:relative;top:4px;margin-right:12px;">lock</i> Password Manager</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="Copy" ng-click="settings($event)">
+          <md-icon class="material-icons">settings</md-icon></md-button>
+      </div>
+    </md-toolbar>
+
+    <md-content flex layout-padding class="md-padding container">
+      <md-card>
+        <md-card-content>
+          
+          <md-progress-linear md-mode="indeterminate" ng-show="loading" class="md-accent"></md-progress-linear>
+          
+          <md-card-actions layout="row" flex>
+            <md-input-container md-no-float class="md-block" flex style="padding-bottom:0;">
+              <md-icon class="material-icons">search</md-icon>
+              <input ng-model="searchText" type="search" placeholder="Search" ng-clock class="ng-cloak">
+            </md-input-container>
+            <md-button flex="20" md-no-ink class="md-accent" ng-click="create($event)">CREATE</md-button>
+          </md-card-actions>
+          <md-list ng-cloak class="ng-cloak">
+            <md-list-item ng-repeat="password in passwords | filter:searchText" class="md-2-line">
+              <div class="md-list-item-text">
+                <h3>{{ password.url }}</h3>
+                <p>{{ password.comment }}</p>
+              </div>
+              <div class="md-list-item-text" layout-align="end end" layout="row">
+                <md-button class="md-icon-button" aria-label="Copy" ng-click="copy(password.url, $event)">
+                  <md-icon class="material-icons">content_copy</md-icon></md-button>
+                <md-button class="md-icon-button" aria-label="Edit" ng-click="edit(password.url, $event)">
+                  <md-icon class="material-icons">mode_edit</md-icon></md-button>
+                <md-button class="md-icon-button md-warn" aria-label="Edit" ng-click="confirmDestroy(password.url, $event)">
+                  <md-icon class="material-icons">delete</md-icon></md-button>
+              </div>
+            </md-list-item>
+          </md-list>
+          <md-card-content>
+      </md-card>
+    </md-content>
+
+    
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/controller/popup.js"></script>
+    <script src="scripts/controller/options.js"></script>
+    <script src="scripts/service/chrome-service.js"></script>
+    <script src="scripts/service/settings-service.js"></script>
+    <script src="scripts/service/password-service.js"></script>
+    <!-- endbuild -->
+    
+  </body>
+</html>

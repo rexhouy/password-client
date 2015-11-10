@@ -1,0 +1,9 @@
+{
+  "name": "password-manager",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "~1.2.24",
+    "angular-material": "~0.11.4"
+  },
+  "devDependencies": {}
+}

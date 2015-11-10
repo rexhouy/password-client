@@ -1,0 +1,24 @@
+{
+    "name": "__PASSWORD_MANAGEMENT__",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "description": "Password management",
+    "default_locale": "en",
+    "icons": {
+        "128": "images/icon.png"
+    },
+    "permissions": [
+        "tabs",
+        "http://*/*",
+        "https://*/*",
+        "clipboardRead",
+        "clipboardWrite",
+        "storage"
+    ],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "browser_action": {
+        "default_icon": "images/icon.png",
+        "default_popup": "popup.html"
+    },
+    "options_page": "options.html"
+}
